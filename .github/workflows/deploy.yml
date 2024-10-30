@@ -28,4 +28,16 @@ jobs:
 
             - name:  Verify Pushed Image
               run: docker pull uditshukla/nextapplication
-
+            
+            # Deploy to EC2 instance 
+            - name: Deploy to EC2 instance
+              uses: appleboy/ssh-action@master
+              with:
+                host: ${{ secrets.SSH_HOST }}
+                username: ${{ secrets.SSH_USERNAME }}
+                key: ${{ secrets.SSH_KEY }}
+                script: |
+                  sudo docker pull uditshukla/nextapplication:latest
+                  sudo docker stop nextapplication || true
+                  sudo docker rm nextapplication || true
+                  sudo docker run -d --name nextapplication -p 3000:3000 uditshukla/nextapplication:latest
