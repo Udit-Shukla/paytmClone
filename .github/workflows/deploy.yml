@@ -20,9 +20,10 @@ jobs:
             - name: Build and Push Docker Image
               uses: docker/build-push-action@v2
               with:
-                context:
-                    file:./docker/Dockerfile.user
-                    push:true
+                context: .
+                file: ./docker/Dockerfile.user
+                push: true
+                tags: uditshukla/nextapplication
                    
 
             - name:  Verify Pushed Image
