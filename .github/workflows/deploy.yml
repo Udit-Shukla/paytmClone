@@ -23,8 +23,8 @@ jobs:
                 context:
                     file:./docker/Dockerfile.user
                     push:true
-                    tags:uditshukla/nextapplication:latest  
+                    tags:uditshukla/nextapplication
 
             - name:  Verify Pushed Image
-              run: docker pull uditshukla/nextapplication:latest
+              run: docker pull uditshukla/nextapplication
 
